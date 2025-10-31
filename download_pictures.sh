@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash -p bash -p xmlstarlet -p jq -p curl
+#! nix-shell -i bash -p bash -p xmlstarlet -p jq -p curl -p util-linux
 
 file=$1
 
@@ -35,6 +35,5 @@ function download_img() {
     wget -nv "$url" -O "./images/$(uuidgen).jpg"
   done
 }
-
 
 (images_by_name ; images_by_uuid) | extract_img_url | download_img
