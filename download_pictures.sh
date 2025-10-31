@@ -3,21 +3,23 @@
 
 file=$1
 
-function build_cmd(){
+#TODO check arguments and display basic useage
+
+function query(){
   xmlstarlet sel -t -m "${1}" -v "${2}" -n "${file}"
 }
 
 base_query='/cockatrice_deck/zone[@name="main"]/card'
 
 function images_by_uuid(){
-  build_cmd "${base_query}[@uuid]" "@uuid" | while read -r uuid
+  query "${base_query}[@uuid]" "@uuid" | while read -r uuid
   do
     curl -s "https://api.scryfall.com/cards/${uuid}" 
   done
 }
 
 function images_by_name(){
-  build_cmd "${base_query}[not(@uuid)]" "@name" | while read -r name
+  query "${base_query}[not(@uuid)]" "@name" | while read -r name
   do
     curl --get -s --data-urlencode "exact=${name}" "https://api.scryfall.com/cards/named"
   done
