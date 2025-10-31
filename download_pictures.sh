@@ -30,7 +30,7 @@ function extract_img_url() {
 function download_img() {
   while read -r url
   do
-    wget -q "${url}"
+    wget -nv "$url" -O "./images/$(uuidgen).jpg"
   done
 }
 
