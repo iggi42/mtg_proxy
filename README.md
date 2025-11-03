@@ -16,6 +16,25 @@ With this simple LaTeX document, it is quite easy to generate a printable PDF th
 
 ----
 
+
+# Scripts
+All scripts need a working `nix-shell` to fetch script deps via [nix](https://nixos.org/).
+
+## ./download_pictures.sh
+This requires a path to a cockatrice deck file (technically desribed [here](https://github.com/Cockatrice/Cockatrice/blob/master/doc/deck.xsd)).
+It will download the images of the cards in the deck file into the `./images` folder with a random uuid as file name.
+If a printing is selected in cockatrice, it will respect that.
+```bash
+ ./download_pictures.sh ${cod_file}
+```
+
+## ./make-pages.py
+This generates LaTeX code so that every picture in `./images` is printed as a magic card.
+It is used to pipe directly into `./magic_pages.tex` so that you can build `template.tex` which includes it.
+
+The result should be a nice pdf with all your downloaded magic cards.
+
+
 ## :scroll: License ? [![GitHub license](https://img.shields.io/github/license/Naereen/LaTeX_template_to_print_Magic_cards.svg)](https://github.com/Naereen/LaTeX_template_to_print_Magic_cards/blob/master/LICENSE)
 [MIT Licensed](https://lbesson.mit-license.org/) (file [LICENSE](LICENSE)).
 © [Lilian Besson](https://GitHub.com/Naereen), 2023.
