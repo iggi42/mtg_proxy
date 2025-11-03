@@ -32,7 +32,7 @@ If a printing is selected in cockatrice, it will respect that.
 This generates LaTeX code so that every picture in `./images` is printed as a magic card.
 
 ```bash
- ./magic_pages.tex > ./magic_pages.tex
+ ./make-pages.py > ./magic_pages.tex
 ```
 
 It is used to pipe directly into `./magic_pages.tex` so that you can build `template.tex` which includes it.
